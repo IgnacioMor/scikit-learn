@@ -71,8 +71,15 @@ for name, estimator in estimators:
     estimator.fit(X, y)
     elapsed_time = time.time() - t0
     y_pred = estimator.predict(line_x.reshape(2, 1))
-    plt.plot(line_x, y_pred,
-             label='%s (fit time: %.2fs)' % (name, elapsed_time))
+    if (name == 'RANSAC'):
+        plt.plot(line_x, y_pred,
+                 label='%s (fit time: %.2fs)' % (name, elapsed_time),
+                 linestyle='--', linewidth=2.0)
+    else:
+        plt.plot(line_x, y_pred,
+                 label='%s (fit time: %.2fs)' % (name, elapsed_time),
+                 linewidth=1.0)
+
 
 plt.axis('tight')
 plt.legend(loc='upper left')
@@ -101,7 +108,8 @@ for name, estimator in estimators:
     elapsed_time = time.time() - t0
     y_pred = estimator.predict(line_x.reshape(2, 1))
     plt.plot(line_x, y_pred,
-             label='%s (fit time: %.2fs)' % (name, elapsed_time))
+             label='%s (fit time: %.2fs)' % (name, elapsed_time),
+             linewidth=1.0)
 
 plt.axis('tight')
 plt.legend(loc='upper left')
